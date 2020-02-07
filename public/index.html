@@ -11,13 +11,16 @@
 
 <body>
     <h1>Chat</h1>
-    <script src="socket.io/socket.io.js"></script>
-    <script src='js/socket-custom.js'></script>
+    
     <div id="container">
                     <label>Usuario: </label>
                     <input type="text" id="inputUserName">
             <div class="chatContainer">
-                    <label id="labelChat"></label>
+                <div id="divLabelChat">
+                        <label id="labelChat"></label>
+
+                </div>
+
                     <div id="containerInputButton">
                             <input type="text" id="inputChat">
                             <button id="buttonChat" onclick="sendMessage()">Enviar</button>
@@ -26,5 +29,6 @@
     </div>
     
 </body>
-
+<script src="socket.io/socket.io.js"></script>
+    <script src='js/socket-custom.js'></script>
 </html>

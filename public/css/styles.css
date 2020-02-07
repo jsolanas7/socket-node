@@ -7,6 +7,11 @@
     width: 100%;
     padding: 5px;
 }
+#divLabelChat{
+    overflow: auto;
+    height: 80%;
+
+}
 #container{
     width: 60%;
     display:flex;
@@ -18,7 +23,6 @@
     margin: 3px;
 }
 #labelChat{
-    height: 80%;
 }
 #containerInputButton{
     height: 20%;

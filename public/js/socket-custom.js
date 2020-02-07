@@ -16,7 +16,13 @@ socket.on('recibirMensaje', function (resp) {
     setChatMessage(resp.user, resp.message);
 })
 // Enviar informacion
-
+document.getElementById("inputChat").addEventListener("keyup", function(event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+      // Cancel the default action, if needed
+      sendMessage();
+    }
+  });
 
 function sendMessage() {
     const user = document.getElementById("inputUserName").value;
