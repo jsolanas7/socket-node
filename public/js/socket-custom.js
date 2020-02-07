@@ -21,14 +21,17 @@ socket.on('recibirMensaje', function (resp) {
 function sendMessage() {
     const user = document.getElementById("inputUserName").value;
     const message = document.getElementById("inputChat").value;
-    setOwnerMessage();
-    socket.emit('enviarMensaje', {
-        user,
-        message
-    }, function (callback) {
-        console.log(callback);
+    if(user != '' && message != ''){
+        setOwnerMessage();
+        socket.emit('enviarMensaje', {
+            user,
+            message
+        }, function (callback) {
+            console.log(callback);
+        }
+        )
     }
-    )
+    
 }
 
 
@@ -47,4 +50,5 @@ function setOwnerMessage() {
     const user = document.getElementById("inputUserName").value;
     const message = document.getElementById("inputChat").value;
     document.getElementById("labelChat").innerHTML = valueLabel + '<strong>- ' + user + '</strong>' + ': ' + message + '<br>';
+    document.getElementById("inputChat").value = '';
 }
