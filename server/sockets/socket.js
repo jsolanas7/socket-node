@@ -1,5 +1,10 @@
 const { io } = require('../server')
 
+// const client = io.on('connection', (client) => {
+// });
+
+
+// 
 io.on('connection', (client) => {
 
     console.log('Usuario conectado');
@@ -11,16 +16,15 @@ io.on('connection', (client) => {
     })
 
     // Escuchar el client
-    client.on('enviarMensaje', (req,callback) => {
+    client.on('enviarMensaje', (req) => {
 
-        callback({
-            mensaje: 'Se disparo el callback'
-        })
+        
 
         
         client.broadcast.emit('recibirMensaje' , {
             user: req.user,
-            message: req.message
+            message: req.message,
+            date: req.date
         });
         
 
