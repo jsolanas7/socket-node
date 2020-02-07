@@ -12,16 +12,12 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static(publicPath));
 // IO = esta es la comunicacion del backend
-let io = socketIO(server);
+// Exportamos IO para usarlo en socket.js
+module.exports.io = socketIO(server);
 
-io.on('connection', (client) => {
+//Indico que use el archivo de socket.js
+require('./sockets/socket');
 
-    console.log('Usuario conectado');
-    client.on('disconnect', () => {
-        console.log('Usuario desconectado');
-        
-    })
-})
 
 server.listen(port, (err) => {
 
