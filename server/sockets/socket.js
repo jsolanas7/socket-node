@@ -6,7 +6,6 @@ const { io } = require('../server')
 
 // 
 io.on('connection', (client) => {
-
     console.log('Usuario conectado');
 
 
@@ -17,11 +16,12 @@ io.on('connection', (client) => {
 
     // Escuchar el client
     client.on('enviarMensaje', (req) => {
+        client.join('room', () => console.log(`Socket ${client.id} joined room`));
 
         
 
         
-        client.broadcast.emit('recibirMensaje' , {
+        io.emit('recibirMensaje' , {
             user: req.user,
             message: req.message,
             date: req.date

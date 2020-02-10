@@ -10,7 +10,7 @@ app.post('/chat/create' , [], async function(req, res){
         const newMessage = await create(req.body);
         // eventMessage(newMessage);
         // socketEmit(newMessage.user, newMessage.message);
-        // socketEmit('adna2', 'anda');
+        // socketEmit('adna2', 'anda'); 
         return res.json(newMessage)
     }
     catch(err){

@@ -32,13 +32,13 @@ function sendMessage() {
     httpPost(user,message);
     if(user != '' && message != ''){
         setOwnerMessage();
-        // socket.emit('enviarMensaje', {
-        //     user,
-        //     message
-        // }, function (callback) {
-        //     console.log(callback);
-        // }
-        // )
+        socket.emit('enviarMensaje', {
+            user,
+            message
+        }, function (callback) {
+            console.log(callback);
+        }
+        )
     }
 }
 
