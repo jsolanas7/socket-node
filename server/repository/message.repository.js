@@ -1,4 +1,6 @@
 const Message = require('../models/message');
+const { createJob } = require('../sockets/socket')
+const { io } = require('../server');
 
 
 const getAll = async() => {
@@ -21,6 +23,12 @@ const create = async(body)  => {
             date: Date.now()
         })
         const message = await messageNew.save();
+        io.emit('recibirMensaje' , {
+            user: message.user,
+            message: message.message,
+            date: message.date
+        });
+        createJob();
         return {
             user: message.user,
             message: message.message,

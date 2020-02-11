@@ -4,6 +4,8 @@ const http = require('http');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const { urlDB, port } = require('./config/config');
+// const { createJob } = require('./jobs/jobs');
 
 
 const path = require('path');
@@ -12,7 +14,6 @@ const app = express();
 let server = http.createServer(app);
 
 const publicPath = path.resolve(__dirname, '../public');
-const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(publicPath));
@@ -22,10 +23,10 @@ module.exports.io = socketIO(server);
 
 //Indico que use el archivo de socket.js
 require('./sockets/socket')
+// createJob();
 
 //controllers
 app.use(require('./controllers/message.controller'));
-urlDB = 'mongodb+srv://admin:admin@cluster0-k9gxz.mongodb.net/chatTest?retryWrites=true&w=majority';
 mongoose.connect(urlDB,
     { useNewUrlParser: true , useCreateIndex: true, useUnifiedTopology: true},
      (err,res) => {
@@ -34,9 +35,6 @@ console.log('Base de datos ONLINE');
 });
 
 server.listen(port, (err) => {
-
     if (err) throw new Error(err);
-
     console.log(`Servidor corriendo en puerto ${ port }`);
-
 });
